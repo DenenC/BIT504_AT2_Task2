@@ -1,4 +1,6 @@
 import java.awt.*;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 public class Board {
 	// grid line width
@@ -13,7 +15,8 @@ public class Board {
 	public Board() {
 		
 	 //TODO: initialise the cells array using ROWS and COLS constants 
-
+		
+		cells = new Cell[GameMain.ROWS][GameMain.COLS];
 		
 		for (int row = 0; row < GameMain.ROWS; ++row) {
 			for (int col = 0; col < GameMain.COLS; ++col) {
@@ -30,7 +33,7 @@ public class Board {
 		// Hint: Use a nested loop (see the constructor for an example). Check whether any of the cells content in the board grid are Player.Empty. If they are, it is not a draw.
 		// Hint: Return false if it is not a draw, return true if there are no empty positions left
 		   
-		
+		return false;
 
 		
 	}

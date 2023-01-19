@@ -1,8 +1,8 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-
-
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 public class GameMain extends JPanel implements MouseListener{
 	//Constants for game 
@@ -27,6 +27,15 @@ public class GameMain extends JPanel implements MouseListener{
 	private Board board;
 	 	 
 	//TODO: create the enumeration for the variable below (GameState currentState)
+	
+	public enum GameState {
+		  Playing,
+		  Draw,
+		  Cross_won,
+		  Nought_won
+		}
+	
+	
 	//HINT all of the states you require are shown in the code within GameMain
 	private GameState currentState; 
 	
@@ -39,9 +48,11 @@ public class GameMain extends JPanel implements MouseListener{
 	/** Constructor to setup the UI and game components on the panel */
 	public GameMain() {   
 		
-		// TODO: This JPanel fires a MouseEvent on MouseClicked so add required event listener to 'this'.          
-	    
-	    
+		// TODO: This JPanel fires a MouseEvent on MouseClicked so add required event listener to 'this'.      
+        addMouseListener(this);
+        
+
+		
 		// Setup the status bar (JLabel) to display status message       
 		statusBar = new JLabel("         ");       
 		statusBar.setFont(new Font(Font.DIALOG_INPUT, Font.BOLD, 14));       
@@ -57,10 +68,13 @@ public class GameMain extends JPanel implements MouseListener{
 		
 		
 		// TODO: Create a new instance of the game "Board"class. HINT check the variables above for the correct name
-
+		board = new Board();
+		
 		
 		//TODO: call the method to initialise the game board
-
+		initGame();
+		
+		
 	}
 	
 	public static void main(String[] args) {
@@ -71,12 +85,13 @@ public class GameMain extends JPanel implements MouseListener{
 				JFrame frame = new JFrame(TITLE);
 				
 				//TODO: create the new GameMain panel and add it to the frame
-						
-				
-				
+
+				GameMain game = new GameMain ();
+				frame.add(game);
 				//TODO: set the default close operation of the frame to exit_on_close
-		            
 				
+			    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			    
 				frame.pack();             
 				frame.setLocationRelativeTo(null);
 				frame.setVisible(true);
